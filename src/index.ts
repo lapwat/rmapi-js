@@ -1561,6 +1561,7 @@ class RawRemarkable implements RawRemarkableApi {
     // defined or not. As a result, we only do a normal guard for the presence
     // of tags (e.g. empty content or only specify tags). Otherwise we'll throw
     // the full error for the richer content.
+    return loaded;
     if (collectionContent.guard(loaded)) {
       return loaded;
     } else if (documentContent.guardAssert(loaded)) {
