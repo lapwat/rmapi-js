@@ -1459,7 +1459,7 @@ class RawRemarkable implements RawRemarkableApi {
     const res = await this.#authedFetch("GET", `${this.#rawHost}/sync/v4/root`);
     const raw = await res.text();
     const loaded = JSON.parse(raw) as unknown;
-    if (!rootHash.guardAssert(loaded)) throw Error("invalid root hash");
+    // if (!rootHash.guardAssert(loaded)) throw Error("invalid root hash");
     const { hash, generation, schemaVersion } = loaded;
     if (schemaVersion !== 3) {
       throw new Error(`schema version ${schemaVersion} not supported`);
@@ -1574,7 +1574,7 @@ class RawRemarkable implements RawRemarkableApi {
   async getMetadata(hash: string): Promise<Metadata> {
     const raw = await this.getText(hash);
     const loaded = JSON.parse(raw) as unknown;
-    if (!metadata.guardAssert(loaded)) throw Error("invalid metadata");
+    // if (!metadata.guardAssert(loaded)) throw Error("invalid metadata");
     return loaded;
   }
 
@@ -1600,7 +1600,7 @@ class RawRemarkable implements RawRemarkableApi {
     );
     const raw = await resp.text();
     const loaded = JSON.parse(raw) as unknown;
-    if (!updatedRootHash.guardAssert(loaded)) throw Error("invalid root hash");
+    // if (!updatedRootHash.guardAssert(loaded)) throw Error("invalid root hash");
     const { hash: newHash, generation: newGen } = loaded;
     if (Number.isSafeInteger(newGen)) {
       return [newHash, newGen];
